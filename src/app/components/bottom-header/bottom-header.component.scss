@@ -1,0 +1,33 @@
+.container{
+    min-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.header__nav{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px 10px;
+    box-sizing: border-box;
+    background: #FCFCFC;
+}
+
+.nav__list{
+    display: flex;
+    justify-content: space-around;
+}
+
+.nav__item{
+    width: 70px;
+    text-align: center;
+}
+
+.nav__link img {
+    height: 24px;
+    width: auto;
+    margin-bottom: 5px;
+}
