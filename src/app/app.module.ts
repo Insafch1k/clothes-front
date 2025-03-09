@@ -7,6 +7,10 @@ import { MainComponent } from './pages/main/main.component';
 import { CatalogComponent } from './pages/catalog/catalog.component';
 import { WardrobeComponent } from './pages/wardrobe/wardrobe.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { BottomHeaderComponent } from './components/bottom-header/bottom-header.component';
+import { DownloaderButtonsComponent } from './components/downloader-buttons/downloader-buttons.component';
+import { ConfirmButtonsComponent } from './components/confirm-buttons/confirm-buttons.component';
+import { CategoryComponent } from './components/category/category.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +18,11 @@ import { ProfileComponent } from './pages/profile/profile.component';
     MainComponent,
     CatalogComponent,
     WardrobeComponent,
-    ProfileComponent
+    ProfileComponent,
+    BottomHeaderComponent,
+    DownloaderButtonsComponent,
+    ConfirmButtonsComponent,
+    CategoryComponent,
   ],
   imports: [
     BrowserModule,
