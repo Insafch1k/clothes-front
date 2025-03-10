@@ -1,5 +1,4 @@
 import { Component} from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-downloader-buttons',
@@ -7,9 +6,4 @@ import { Router } from '@angular/router';
   styleUrls: ['./downloader-buttons.component.scss']
 })
 export class DownloaderButtonsComponent {
-  constructor(private router: Router) {}
-
-  async handleCameraButton() {
-    await this.router.navigate(['/gallery']);
-  }
 }

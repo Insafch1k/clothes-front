@@ -23,11 +23,6 @@ export class CameraService {
     }
   }
 
-  stopCamera() {
-    if (this.videoElement?.srcObject) {
-      (this.videoElement.srcObject as MediaStream)
-        .getTracks()
-        .forEach(track => track.stop());
-    }
+  capturePhoto() {
   }
 }

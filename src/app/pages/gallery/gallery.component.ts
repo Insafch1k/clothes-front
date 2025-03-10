@@ -15,4 +15,8 @@ export class GalleryComponent implements AfterViewInit {
     this.cameraService.setVideoElement(this.videoElementRef.nativeElement);
     this.cameraService.startCamera();
   }
+
+  takeAPhoto() {
+    this.cameraService.capturePhoto()
+  }
 }
