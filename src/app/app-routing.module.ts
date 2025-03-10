@@ -4,6 +4,7 @@ import { MainComponent } from './pages/main/main.component';
 import { CatalogComponent } from './pages/catalog/catalog.component';
 import { WardrobeComponent } from './pages/wardrobe/wardrobe.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { GalleryComponent } from './pages/gallery/gallery.component';
 
 const routes: Routes = [{
   path: '',
@@ -17,6 +18,10 @@ const routes: Routes = [{
   path: 'wardrobe',
   component: WardrobeComponent,
   title: "Гардероб"
+},{
+  path: 'gallery',
+  component: GalleryComponent,
+  title: "Галерея"
 },{
   path: 'profile',
   component: ProfileComponent,

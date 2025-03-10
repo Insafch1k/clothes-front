@@ -11,6 +11,7 @@ import { BottomHeaderComponent } from './components/bottom-header/bottom-header.
 import { DownloaderButtonsComponent } from './components/downloader-buttons/downloader-buttons.component';
 import { ConfirmButtonsComponent } from './components/confirm-buttons/confirm-buttons.component';
 import { CategoryComponent } from './components/category/category.component';
+import { GalleryComponent } from './pages/gallery/gallery.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { CategoryComponent } from './components/category/category.component';
     DownloaderButtonsComponent,
     ConfirmButtonsComponent,
     CategoryComponent,
+    GalleryComponent,
   ],
   imports: [
     BrowserModule,

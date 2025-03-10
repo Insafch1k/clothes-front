@@ -1,4 +1,5 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component} from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-downloader-buttons',
@@ -6,9 +7,9 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
   styleUrls: ['./downloader-buttons.component.scss']
 })
 export class DownloaderButtonsComponent {
-  @ViewChild('videoElement', { static: true }) videoElementRef!: ElementRef<HTMLVideoElement>;
-  @ViewChild('canvasElement', { static: true }) canvasElementRef!: ElementRef<HTMLCanvasElement>;
-  imageData: string | null = null;
+  constructor(private router: Router) {}
 
-  constructor() {}
+  async handleCameraButton() {
+    await this.router.navigate(['/gallery']);
+  }
 }
