@@ -11,7 +11,7 @@ export class AppComponent {
 
   constructor(private router: Router, private route: ActivatedRoute) {
     this.router.events.subscribe((event) => {
-      this.showBottomHeader = !this.router.url.includes('/gallery')
+      this.showBottomHeader = (!this.router.url.includes('/gallery') && !this.router.url.includes('/confirmation'))
     })
   }
 }

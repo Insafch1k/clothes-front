@@ -1,0 +1,9 @@
+<div class="confirmation__container">
+	<a class="back-button" routerLink="/gallery"
+		><img src="../../../assets/images/back-button.svg" alt="back-button"
+	/></a>
+	<div *ngIf="imageData">
+		<img [src]="imageData" alt="Captured Photo" />
+	</div>
+	<div class="buttons" routerLink=""><button>Загрузить</button></div>
+</div>

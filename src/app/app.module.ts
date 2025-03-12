@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +13,8 @@ import { DownloaderButtonsComponent } from './components/downloader-buttons/down
 import { ConfirmButtonsComponent } from './components/confirm-buttons/confirm-buttons.component';
 import { CategoryComponent } from './components/category/category.component';
 import { GalleryComponent } from './pages/gallery/gallery.component';
+import { ConfirmationComponent } from './pages/confirmation/confirmation.component';
+
 
 @NgModule({
   declarations: [
@@ -25,10 +28,12 @@ import { GalleryComponent } from './pages/gallery/gallery.component';
     ConfirmButtonsComponent,
     CategoryComponent,
     GalleryComponent,
+    ConfirmationComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

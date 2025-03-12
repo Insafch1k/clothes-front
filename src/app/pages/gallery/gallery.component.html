@@ -1,6 +1,17 @@
 <div class="video__container">
 	<video #videoElement autoplay></video> <canvas #canvasElement></canvas>
+	<a class="back-button" (click)="backButton1()"
+		><img src="../../../assets/images/back-button.svg" alt="back-button"
+	/></a>
 	<div class="buttons">
-		<button routerLink="" (click)="takeAPhoto()">Загрузить</button>
+		<button (click)="takeAPhoto()">Сфоткать</button>
+		<input
+			hidden
+			type="file"
+			accept="image/*"
+			(change)="uploadPhoto($event)"
+			#fileInput
+		/>
+		<button (click)="fileInput.click()">Загрузить</button>
 	</div>
 </div>
