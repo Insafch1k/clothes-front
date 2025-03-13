@@ -1,0 +1,19 @@
+.main__container{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.image-data {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    height: 100vh;
+    transform: translateX(-50%);
+    object-fit: cover;
+    width: auto;
+    max-width: none;
+}

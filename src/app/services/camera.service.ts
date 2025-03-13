@@ -2,6 +2,16 @@ import { Injectable } from '@angular/core';
 import { Router} from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 
+const DEFAULT_CAMERA_CONSTRAINTS: MediaStreamConstraints = {
+  video: {
+    facingMode: 'environment',
+    width: { ideal: 1920 },
+    height: { ideal: 1080 }
+  }
+};
+
+const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
+
 @Injectable({
   providedIn: 'root'
 })
@@ -19,62 +29,103 @@ export class CameraService {
     this.canvasElement = canvas;
   }
 
-  async startCamera() {
+  async startCamera(): Promise<void> {
     try {
-      this.stream = await navigator.mediaDevices.getUserMedia({video: true});
-      if (this.videoElement) {
-        this.videoElement.srcObject = this.stream;
-        this.videoElement.play();
-      }
+      await this.stopCamera();
+      this.stream = await this.initializeCamera(DEFAULT_CAMERA_CONSTRAINTS);
+      this.setVideoStream(this.stream);
     } catch (error) {
-      console.error('Camera error:', error);
-      alert('Please allow camera access to continue');
+      this.handleCameraError(error);
     }
   }
 
-  capturePhoto(){
-    if(!this.canvasElement || !this.videoElement)return
+  capturePhoto(): void {
+    if (!this.canvasElement || !this.videoElement) return;
 
     const context = this.canvasElement.getContext('2d');
+    if (!context) return;
 
-    if(!context) return;
-
-    [this.canvasElement.width, this.canvasElement.height] = [this.videoElement.videoWidth, this.videoElement.videoHeight];
+    this.setCanvasDimensions();
     context.drawImage(this.videoElement, 0, 0);
-    const newImageData = this.canvasElement.toDataURL('image/png');
-    this.imageDataSubject.next(newImageData)
-    this.router.navigate(['/confirmation'])
+    
+    const imageData = this.canvasElement.toDataURL('image/png');
+    this.imageDataSubject.next(imageData);
+    this.router.navigate(['/confirmation']);
   }
 
   loadPhotoFromGallery(event: Event) {
-    const inputElement = event.target as HTMLInputElement;
-    const file = inputElement.files?.[0];
-
-    if (!file || !file.type.startsWith('image/')) {
-      alert('Please select an image file');
+    const input = event.target as HTMLInputElement;
+    const file = input.files?.[0];
+    
+    if (!file || !this.isValidImageType(file)) {
+      alert('Пожалуйста, выберите файл изображения (JPEG, PNG, WEBP)');
       return;
     }
-  
-    const reader = new FileReader();
-    
-    reader.onload = (e) => {
-      const newImage = e.target?.result as string;
-      this.imageDataSubject.next(newImage);
-      this.router.navigate(['/confirmation']);
-    };
-  
-    reader.readAsDataURL(file);
-    inputElement.value = '';
-  }
 
-  savePhoto() {
-
+    this.readImageFile(file);
+    input.value = '';
   }
 
   stopCamera() {
     this.stream?.getTracks().forEach(track => {
       track.stop();
+      this.videoElement?.removeAttribute('srcObject');
     });
-    this.stream = undefined; 
+    this.stream = undefined;
+  }
+
+  private async initializeCamera(constraints: MediaStreamConstraints): Promise<MediaStream> {
+    try {
+      return await navigator.mediaDevices.getUserMedia(constraints);
+    } catch (error) {
+      if (error instanceof DOMException && constraints.video && error.name === 'NotAllowedError') {
+        return navigator.mediaDevices.getUserMedia({ video: true });
+      }
+      throw error;
+    }
+  }
+
+  private setVideoStream(stream: MediaStream): void {
+    if (!this.videoElement) return;
+    
+    this.videoElement.srcObject = stream;
+    this.videoElement.play().catch(error => {
+      console.error('Video play error:', error);
+    });
+  }
+
+  private setCanvasDimensions(): void {
+    if (!this.canvasElement || !this.videoElement) return;
+    
+    this.canvasElement.width = this.videoElement.videoWidth;
+    this.canvasElement.height = this.videoElement.videoHeight;
+  }
+  
+  private isValidImageType(file: File): boolean {
+    return ALLOWED_IMAGE_TYPES.includes(file.type);
+  }
+
+  private readImageFile(file: File): void {
+    const reader = new FileReader();
+    
+    reader.onload = (e) => {
+      this.imageDataSubject.next(e.target?.result as string);
+      this.router.navigate(['/confirmation']);
+    };
+    
+    reader.onerror = () => {
+      alert('Ошибка при чтении файла');
+    };
+    
+    reader.readAsDataURL(file);
+  }
+
+    private handleCameraError(error: unknown): void {
+    console.error('Camera error:', error);
+    if (error instanceof DOMException) {
+    alert(error.name === 'NotAllowedError' 
+      ? 'Для работы приложения требуется доступ к камере' 
+      : 'Ошибка доступа к камере');
+    }
   }
 }

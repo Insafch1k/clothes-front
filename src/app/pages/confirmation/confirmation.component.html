@@ -3,7 +3,17 @@
 		><img src="../../../assets/images/back-button.svg" alt="back-button"
 	/></a>
 	<div *ngIf="imageData">
-		<img [src]="imageData" alt="Captured Photo" />
+		<img class="image-data" [src]="imageData" alt="Captured Photo" />
 	</div>
-	<div class="buttons" routerLink=""><button>Загрузить</button></div>
+	<div class="status">
+		<p *ngIf="apiService.loading()">Uploading image...</p>
+		<p *ngIf="apiService.error()" class="error">
+			Error: {{ apiService.error() }}
+		</p>
+	</div>
+	<div class="buttons">
+		<button (click)="confirm()" [disabled]="!imageData || apiService.loading()">
+			Загрузить
+		</button>
+	</div>
 </div>

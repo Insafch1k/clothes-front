@@ -11,6 +11,7 @@
 			accept="image/*"
 			(change)="uploadPhoto($event)"
 			#fileInput
+			capture="none"
 		/>
 		<button (click)="fileInput.click()">Загрузить</button>
 	</div>

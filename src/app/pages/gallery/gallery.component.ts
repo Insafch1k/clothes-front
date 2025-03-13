@@ -7,7 +7,7 @@ import { CameraService } from 'src/app/services/camera.service';
   templateUrl: './gallery.component.html',
   styleUrls: ['./gallery.component.scss']
 })
-export class GalleryComponent implements AfterViewInit, OnDestroy {
+export class GalleryComponent implements AfterViewInit{
   @ViewChild('videoElement') videoElementRef!: ElementRef<HTMLVideoElement>;
   @ViewChild('canvasElement') canvasElementRef!: ElementRef<HTMLCanvasElement>;
 
@@ -36,10 +36,7 @@ export class GalleryComponent implements AfterViewInit, OnDestroy {
   }
 
   backButton1() {
-    this.router.navigate([''])
-  }
-
-  ngOnDestroy() {
     this.cameraService.stopCamera();
+    this.router.navigate([''])
   }
 }

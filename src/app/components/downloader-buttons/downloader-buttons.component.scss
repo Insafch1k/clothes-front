@@ -1,7 +1,7 @@
-.buttons{
+.buttons__container{
     box-sizing: border-box;
     position: fixed;
-    bottom: 75px;
+    bottom: 65px;
     font-size: 20px;
     font-weight: 500;
     border-top: 1px solid #6464641A;
@@ -9,6 +9,9 @@
     width: 100%;
     padding: 0 20px;
     background: #FCFCFC;
+}
+.buttons{
+    height: 135px;
 }
 
 button{
