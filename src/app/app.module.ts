@@ -14,6 +14,7 @@ import { ConfirmButtonsComponent } from './components/confirm-buttons/confirm-bu
 import { CategoryComponent } from './components/category/category.component';
 import { GalleryComponent } from './pages/gallery/gallery.component';
 import { ConfirmationComponent } from './pages/confirmation/confirmation.component';
+import { AddClothesComponent } from './pages/add-clothes/add-clothes.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { ConfirmationComponent } from './pages/confirmation/confirmation.compone
     CategoryComponent,
     GalleryComponent,
     ConfirmationComponent,
+    AddClothesComponent,
   ],
   imports: [
     BrowserModule,

@@ -27,10 +27,10 @@ export class ConfirmationComponent implements OnInit, OnDestroy{
 
   confirm() {
     if(this.imageData){
-      this.apiService.postImageData(this.imageData)
+      this.apiService.postImageDataBody(this.imageData)
     }
     this.cameraService.stopCamera();
-    this.router.navigate([''])
+    this.router.navigate(['']);
   }
 
   ngOnDestroy() {

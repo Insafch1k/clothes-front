@@ -6,6 +6,7 @@ import { WardrobeComponent } from './pages/wardrobe/wardrobe.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { GalleryComponent } from './pages/gallery/gallery.component';
 import { ConfirmationComponent } from './pages/confirmation/confirmation.component';
+import { AddClothesComponent } from './pages/add-clothes/add-clothes.component';
 
 const routes: Routes = [{
   path: '',
@@ -27,6 +28,10 @@ const routes: Routes = [{
   path: 'confirmation',
   component: ConfirmationComponent,
   title: "Подтверждение"
+},{
+  path: 'add-clothes',
+  component: AddClothesComponent,
+  title: "Добавление одежды"
 },{
   path: 'profile',
   component: ProfileComponent,

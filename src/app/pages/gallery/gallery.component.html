@@ -1,15 +1,15 @@
 <div class="video__container">
 	<video #videoElement autoplay></video> <canvas #canvasElement></canvas>
-	<a class="back-button" (click)="backButton1()"
+	<a class="back-button" (click)="onBackClick()"
 		><img src="../../../assets/images/back-button.svg" alt="back-button"
 	/></a>
 	<div class="buttons">
-		<button (click)="takeAPhoto()">Сфоткать</button>
+		<button (click)="capturePhoto()">Сфоткать</button>
 		<input
 			hidden
 			type="file"
 			accept="image/*"
-			(change)="uploadPhoto($event)"
+			(change)="handleFileInput($event)"
 			#fileInput
 			capture="none"
 		/>

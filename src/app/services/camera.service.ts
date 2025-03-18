@@ -110,7 +110,6 @@ export class CameraService {
     
     reader.onload = (e) => {
       this.imageDataSubject.next(e.target?.result as string);
-      this.router.navigate(['/confirmation']);
     };
     
     reader.onerror = () => {

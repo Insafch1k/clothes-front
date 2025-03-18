@@ -1,5 +1,5 @@
-import { Component, ElementRef, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, ElementRef, ViewChild, AfterViewInit, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CameraService } from 'src/app/services/camera.service';
 
 @Component({
@@ -11,11 +11,16 @@ export class GalleryComponent implements AfterViewInit{
   @ViewChild('videoElement') videoElementRef!: ElementRef<HTMLVideoElement>;
   @ViewChild('canvasElement') canvasElementRef!: ElementRef<HTMLCanvasElement>;
 
+  action: string | undefined;
 
   constructor(
     private cameraService: CameraService,
-    private router: Router
-  ) {}
+    private router: Router,
+  ) {
+    const navigation = this.router.getCurrentNavigation();
+    this.action = navigation?.extras.state?.['action']; 
+  }
+
 
   ngAfterViewInit() {
     this.cameraService.setVideoElement(
@@ -25,17 +30,25 @@ export class GalleryComponent implements AfterViewInit{
     this.cameraService.startCamera();
   }
 
-  takeAPhoto() {
+  capturePhoto() {
     this.cameraService.capturePhoto();
+    if (this.action === 'upload-photo')
     this.router.navigate(['/confirmation'])
+    else if (this.action === 'add-clothes'){
+      this.router.navigate(['/add-clothes'])
+    }
   }
 
-  uploadPhoto(event: Event) {
+  handleFileInput(event: Event) {
     this.cameraService.loadPhotoFromGallery(event);
-    this.router.navigate(['/confirmation'])
+    if (this.action === 'upload-photo'){
+      this.router.navigate(['/confirmation'])}
+    else if (this.action === 'add-clothes'){
+      this.router.navigate(['/add-clothes'])
+    }
   }
 
-  backButton1() {
+  onBackClick() {
     this.cameraService.stopCamera();
     this.router.navigate([''])
   }

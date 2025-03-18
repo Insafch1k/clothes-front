@@ -8,13 +8,27 @@ import { TelegramService } from './telegram.service';
 })
 export class ApiService {
   private readonly API_URL = 'https://your-api-endpoint.com'
+  type: string | undefined;
   loading = signal(false);
   error = signal<string | null>(null);
+  path: string | undefined;
 
   constructor(
     private http: HttpClient,
     private telegramService: TelegramService
   ) { }
+
+  postImageDataBody(imageData: string){
+    this.path = '/body'
+    this.type = 'not clothes'
+    this.postImageData(imageData);
+  }
+
+  postImageDataClothes(imageData: string, nameClothes: string){
+    this.path = '/clothes'
+    this.type = nameClothes;
+    this.postImageData(imageData);
+  }
 
   postImageData(imageData: string) {
     const initData = this.telegramService.getInitDataUnsafe()
@@ -31,9 +45,10 @@ export class ApiService {
     const payLoad = {
       image: imageData,
       userId,
+      type: this.type
     }
 
-    return this.http.post(this.API_URL+'/image', payLoad).pipe(
+    return this.http.post(this.API_URL + this.path, payLoad).pipe(
       catchError(err => {
         this.error.set(err.message || 'Failed to upload image');
         return of(null);

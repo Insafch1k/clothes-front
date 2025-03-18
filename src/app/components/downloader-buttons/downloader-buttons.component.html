@@ -1,6 +1,23 @@
-<div class="buttons__container">
+<div class="buttons__container" [class.hide-down]="isHidden">
+	<div class="icons">
+		<img
+			src="../../../assets/images/loading-icon.svg"
+			alt="иконка переворачивания"
+		/>
+		<img
+			(click)="toggleContainer()"
+			[src]="
+				isHidden
+					? '../../../assets/images/open-category-icon.svg'
+					: '../../../assets/images/closed-category-icon.svg'
+			"
+			alt="иконка складывания"
+		/>
+	</div>
 	<div class="buttons">
-		<button routerLink="gallery">Загрузить свое фото</button>
-		<button>Добавить одежду</button>
+		<button (click)="navigateToCamera('upload-photo')">
+			Загрузить свое фото
+		</button>
+		<button (click)="navigateToCamera('add-clothes')">Добавить одежду</button>
 	</div>
 </div>

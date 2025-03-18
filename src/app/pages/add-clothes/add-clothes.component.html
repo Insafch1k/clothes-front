@@ -1,0 +1,67 @@
+<div class="clothes__container">
+	<div class="image__container">
+		<img class="image-data" [src]="imageData" alt="" />
+	</div>
+
+	<button
+		class="clothes-category-button"
+		(click)="toggleMenu()"
+		aria-expanded="isMenuOpen"
+		aria-controls="clothes-dropdown"
+	>
+		{{ nameCategory }}
+		<img
+			[src]="
+				isMenuOpen
+					? '../../../assets/images/open-category-icon.svg'
+					: '../../../assets/images/closed-category-icon.svg'
+			"
+			[alt]="isMenuOpen ? 'Close menu' : 'Open menu'"
+			class="icon-svg"
+		/>
+	</button>
+
+	<div
+		id="clothes-dropdown"
+		class="dropdown-menu"
+		[class.dropdown-menu--open]="isMenuOpen"
+	>
+		<ul class="dropdown-list">
+			<li
+				*ngFor="let category of categories"
+				class="dropdown-item"
+				(click)="toggleSubMenu(category)"
+			>
+				<span
+					[class.category-name--open]="category.isSubMenuOpen"
+					class="category-name"
+					>{{ category.name }}</span
+				>
+				<ul
+					*ngIf="category.isSubMenuOpen"
+					class="submenu"
+					[class.submenu--open]="category.isSubMenuOpen"
+				>
+					<li
+						*ngFor="let subCategory of category.subCategories"
+						class="submenu-item"
+						(click)="toggleSubSubMenu(subCategory)"
+					>
+						<span>{{ subCategory.name }}</span>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+</div>
+<label class="clothes__label">
+	<input class="checkbox" type="checkbox" checked />
+	<span class="checkbox-style"></span>
+	<div class="checkbox__text">Примерить сразу после добавления</div>
+</label>
+<div class="buttons">
+	<button (click)="onBackClick('add-clothes')" class="button">Отменить</button>
+	<button (click)="confirm()" class="button save-clothes-button">
+		Сохранить
+	</button>
+</div>
