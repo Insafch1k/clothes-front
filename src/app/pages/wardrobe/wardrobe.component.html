@@ -1,1 +1,47 @@
-<p>wardrobe works!</p>
+<div class="container__wardrobe">
+	<header class="header__wardrobe">
+		<h1>Гардероб</h1>
+	</header>
+
+	<button class="wardrobe-search-button">
+		Найти
+		<img
+			[src]="
+				isSearchOpen
+					? '../../../assets/images/search-wardrobe.svg'
+					: '../../../assets/images/search-wardrobe.svg'
+			"
+			[alt]="isSearchOpen ? 'Close search' : 'Open search'"
+			class="icon-svg"
+		/>
+	</button>
+
+	<ul class="wardrobe-list">
+		<li class="wardrobe-item">
+			<button class="wardrobe-item-button">
+				Одежда
+				<img src="../../../assets/images/wardrobe-1.png" alt="" />
+			</button>
+		</li>
+		<li class="wardrobe-item">
+			<button class="wardrobe-item-button">
+				Обувь
+				<img src="../../../assets/images/wardrobe-2.png" alt="" />
+			</button>
+		</li>
+		<li class="wardrobe-item">
+			<button class="wardrobe-item-button">
+				Головные уборы
+				<img src="../../../assets/images/wardrobe-3.png" alt="" />
+			</button>
+		</li>
+	</ul>
+
+	<div class="wardrobe-button-container">
+		<div class="wardrobe-button">
+			<button>Добавить</button>
+		</div>
+	</div>
+
+	<div class="bottom-header"></div>
+</div>

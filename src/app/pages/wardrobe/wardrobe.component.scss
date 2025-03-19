@@ -1,0 +1,102 @@
+.container__wardrobe{
+    max-width: 1800px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+
+    .header__wardrobe{
+        margin-top: 20px;
+
+        h1 {
+            font-size: 16px;
+            font-weight: 600;
+            text-align: center;
+            padding: 0;
+            margin-block: 0;
+        }
+    }
+
+    .wardrobe-search-button{
+        width: 100%;
+        height: 37px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: white;
+        border: 1px solid black;
+        border-radius: 12px;
+        margin: 15px 0;
+        padding: 0 20px;
+    }
+
+    .wardrobe-list{
+        .wardrobe-item{
+            margin: 10px 0;
+            .wardrobe-item-button{
+                height: 80px;
+                width: 100%;
+                background-color: #bcbcbc;
+                border: 0 solid black;
+                border-radius: 12px;
+                box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.1), inset -4px 3px 7px 2px rgba(31, 31, 31, 0.25);
+                display: flex;
+
+                padding-left: 20px;
+                align-items: center;
+                font-size: 16px;
+                line-height: 106%;
+                font-weight: 600;
+                color: white;
+                justify-content: space-between;
+                
+                position: relative;
+                overflow: hidden;
+
+                img{
+                    height: 110%;
+                    width: auto;
+                    position: absolute;
+                    right: 0;
+                    bottom: 0;
+                    border-radius: 12px;
+                    position: absolute;
+                    object-fit: cover;
+                }
+            }
+        }
+    }
+
+    .wardrobe-button-container{
+        box-sizing: border-box;
+        position: fixed;
+        bottom: 88px;
+        width: 100%;
+        padding-right: 40px;
+
+        .wardrobe-button{
+    
+            button{
+                padding: 0 20px;
+                width: 100%;
+                height: 50px;
+                background-color: #B200FF;
+                color: white;
+                border: none;
+                border-radius: 25px;
+                margin-bottom: 10px;
+                font-size: 18px;
+            }
+        }
+    }
+
+    .bottom-header{
+        margin-left: -20px; 
+        position: fixed;
+        bottom: -15px;
+        border-top: 1px solid #6464641A;
+        border-radius: 10px;
+        width: 100%;
+        height: 100px;
+    }
+}

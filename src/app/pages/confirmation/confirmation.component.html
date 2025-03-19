@@ -1,7 +1,12 @@
 <div class="confirmation__container">
-	<a class="back-button" routerLink="/gallery"
+	<a class="back-button" (click)="onBackClick('upload-photo')"
 		><img src="../../../assets/images/back-button.svg" alt="back-button"
 	/></a>
+	<div *ngIf="apiService.error()" class="error-message">
+		{{ apiService.error() }}
+		<button (click)="apiService.error.set(null)"></button>
+	</div>
+	<div *ngIf="apiService.loading()" class="loading-overlay">Processing...</div>
 	<div *ngIf="imageData">
 		<img class="image-data" [src]="imageData" alt="Captured Photo" />
 	</div>

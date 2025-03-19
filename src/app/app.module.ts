@@ -10,7 +10,6 @@ import { WardrobeComponent } from './pages/wardrobe/wardrobe.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { BottomHeaderComponent } from './components/bottom-header/bottom-header.component';
 import { DownloaderButtonsComponent } from './components/downloader-buttons/downloader-buttons.component';
-import { ConfirmButtonsComponent } from './components/confirm-buttons/confirm-buttons.component';
 import { CategoryComponent } from './components/category/category.component';
 import { GalleryComponent } from './pages/gallery/gallery.component';
 import { ConfirmationComponent } from './pages/confirmation/confirmation.component';
@@ -26,7 +25,6 @@ import { AddClothesComponent } from './pages/add-clothes/add-clothes.component';
     ProfileComponent,
     BottomHeaderComponent,
     DownloaderButtonsComponent,
-    ConfirmButtonsComponent,
     CategoryComponent,
     GalleryComponent,
     ConfirmationComponent,

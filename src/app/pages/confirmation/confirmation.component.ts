@@ -36,4 +36,10 @@ export class ConfirmationComponent implements OnInit, OnDestroy{
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
+
+  onBackClick(action: string){
+    this.router.navigate(['/gallery'], {
+      state: {action}
+    } )
+  }
 }

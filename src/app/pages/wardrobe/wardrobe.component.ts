@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./wardrobe.component.scss']
 })
 export class WardrobeComponent {
+  isSearchOpen: boolean = false;
 
 }

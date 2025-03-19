@@ -89,9 +89,9 @@ export class AddClothesComponent implements OnInit, OnDestroy {
   }
 
   confirm() {
-    console.log('-----------')
-    if(!this.imageData || this.nameCategory === 'Выберите категорию') return
-    console.log('-----------')
+    if(!this.imageData || this.nameCategory === 'Выберите категорию') return console.log('Отсуствует либо фото, либо категорию не выбрал!!!')
     this.apiService.postImageDataClothes(this.imageData, this.nameCategory);
+    this.cameraService.stopCamera();
+    this.router.navigate(['/'])
   }
 }

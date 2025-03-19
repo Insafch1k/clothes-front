@@ -47,7 +47,7 @@ export class ApiService {
       userId,
       type: this.type
     }
-
+    
     return this.http.post(this.API_URL + this.path, payLoad).pipe(
       catchError(err => {
         this.error.set(err.message || 'Failed to upload image');

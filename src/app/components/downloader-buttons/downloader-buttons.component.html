@@ -1,10 +1,16 @@
-<div class="buttons__container" [class.hide-down]="isHidden">
+<div
+	class="buttons__container"
+	[class.hide-down]="isHidden"
+	[class.hide-change]="isSwitch"
+>
 	<div class="icons">
 		<img
+			(click)="toggleSwitching()"
 			src="../../../assets/images/loading-icon.svg"
 			alt="иконка переворачивания"
 		/>
 		<img
+			class="icon-open-closed"
 			(click)="toggleContainer()"
 			[src]="
 				isHidden
@@ -15,9 +21,50 @@
 		/>
 	</div>
 	<div class="buttons">
-		<button (click)="navigateToCamera('upload-photo')">
+		<button class="button" (click)="navigateToCamera('upload-photo')">
 			Загрузить свое фото
 		</button>
-		<button (click)="navigateToCamera('add-clothes')">Добавить одежду</button>
+		<button class="button" (click)="navigateToCamera('add-clothes')">
+			Добавить одежду
+		</button>
+	</div>
+</div>
+<div
+	class="buttons__container button__container__2"
+	[class.hide-down]="isHiddenTwo"
+	[class.hide-change]="!isSwitch"
+>
+	<div class="icons">
+		<img
+			(click)="toggleSwitching()"
+			src="../../../assets/images/loading-icon.svg"
+			alt="иконка переворачивания"
+		/>
+		<div class="things">
+			<button
+				(click)="toggleThing1()"
+				class="thing"
+				[class.thing-active]="isThing"
+			>
+				Каталог
+			</button>
+			<button
+				(click)="toggleThing2()"
+				class="thing"
+				[class.thing-active]="!isThing"
+			>
+				Гардероб
+			</button>
+		</div>
+		<img
+			class="icon-open-closed"
+			(click)="toggleContainerTwo()"
+			[src]="
+				isHiddenTwo
+					? '../../../assets/images/open-category-icon.svg'
+					: '../../../assets/images/closed-category-icon.svg'
+			"
+			alt="иконка складывания"
+		/>
 	</div>
 </div>

@@ -8,12 +8,32 @@ import { Router } from '@angular/router';
 })
 export class DownloaderButtonsComponent {
   isHidden = false;
+  isHiddenTwo = false;
+  isSwitch = false;
+  isThing = false;
 
   constructor(private router: Router) {}
 
   toggleContainer() {
     this.isHidden = !this.isHidden;
-    console.log(this.isHidden)
+  }
+
+  toggleContainerTwo() {
+    this.isHiddenTwo = !this.isHiddenTwo;
+  }
+
+  toggleSwitching() {
+    this.isHidden = false;
+    this.isHiddenTwo = false;
+    this.isSwitch = !this.isSwitch;
+  }
+
+  toggleThing1(){
+    this.isThing = true
+  }
+
+  toggleThing2(){
+    this.isThing = false
   }
 
   navigateToCamera(action: string){
