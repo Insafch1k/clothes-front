@@ -2,7 +2,13 @@
 	<div class="image__container">
 		<img class="image-data" [src]="imageData" alt="" />
 	</div>
-
+	<div class="status">
+		<p *ngIf="apiService.loading()">Uploading image...</p>
+		<p *ngIf="apiService.error()" class="error">
+			Error: {{ apiService.error() }}
+			<button (click)="apiService.error.set(null)">Спрятать</button>
+		</p>
+	</div>
 	<button
 		class="clothes-category-button"
 		(click)="toggleMenu()"
@@ -35,8 +41,15 @@
 				<span
 					[class.category-name--open]="category.isSubMenuOpen"
 					class="category-name"
-					>{{ category.name }}</span
-				>
+					(click)="toogleSubName(category)"
+					>{{ category.name }}
+					<img
+						*ngIf="!category.isSubMenuOpen"
+						src="../../../assets/images/closed-category-icon.svg"
+						alt="Close menu"
+						class="icon-svg"
+					/>
+				</span>
 				<ul
 					*ngIf="category.isSubMenuOpen"
 					class="submenu"
@@ -47,7 +60,33 @@
 						class="submenu-item"
 						(click)="toggleSubSubMenu(subCategory)"
 					>
-						<span>{{ subCategory.name }}</span>
+						<span
+							class="subcategory-name"
+							(click)="toogleSubSubName(subCategory)"
+							[class.subcategory-name--open]="subCategory.isSubSubMenuOpen"
+							>{{ subCategory.name }}
+							<img
+								*ngIf="!subCategory.isSubSubMenuOpen"
+								src="../../../assets/images/closed-category-icon.svg"
+								alt="Close menu"
+								class="icon-svg"
+							/>
+						</span>
+						<ul
+							*ngIf="subCategory.isSubSubMenuOpen"
+							class="subsubmenu"
+							[class.subsubmenu--open]="subCategory.isSubSubMenuOpen"
+						>
+							<li
+								*ngFor="let subSubCategory of subCategory.subSubCategories"
+								class="subsubmenu-item"
+								(click)="toggleSubSubSubMenu(subSubCategory)"
+							>
+								<span class="subsubcategory-name"
+									>{{ subSubCategory.name }}
+								</span>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</li>
@@ -65,3 +104,4 @@
 		Сохранить
 	</button>
 </div>
+<div class="bottom-header"></div>

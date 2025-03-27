@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { CameraService } from 'src/app/services/camera.service';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-main',
@@ -12,14 +12,14 @@ export class MainComponent implements OnInit, OnDestroy {
   private subscription!: Subscription;
 
   constructor(
-    private cameraService: CameraService,
+    private apiService: ApiService
   ) {}
 
   ngOnInit(): void {
-    this.subscription = this.cameraService.imageData$.subscribe(data => {
-      this.imageData = data;
-    })
-  }
+    this.subscription = this.apiService.uploadedPhotoBody$.subscribe(photo => {
+      this.imageData = photo;
+    });
+   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();

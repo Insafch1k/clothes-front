@@ -3,16 +3,17 @@
 	<a class="back-button" (click)="onBackClick()"
 		><img src="../../../assets/images/back-button.svg" alt="back-button"
 	/></a>
-	<div class="buttons">
-		<button (click)="capturePhoto()">Сфоткать</button>
-		<input
-			hidden
-			type="file"
-			accept="image/*"
-			(change)="handleFileInput($event)"
-			#fileInput
-			capture="none"
-		/>
-		<button (click)="fileInput.click()">Загрузить</button>
-	</div>
+	<button class="togglePhoto" (click)="capturePhoto()"></button>
+	<input
+		hidden
+		type="file"
+		accept="image/*"
+		(change)="handleFileInput($event)"
+		#fileInput
+		capture="none"
+	/>
+	<button class="folderPhoto" (click)="fileInput.click()">
+		<img src="../../../assets/images/folder-photo.svg" alt="Иконка папки" />
+		<div class="video__text">Галерея</div>
+	</button>
 </div>

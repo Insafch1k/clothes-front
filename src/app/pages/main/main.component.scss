@@ -6,6 +6,10 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    background-image: url(../../../assets/images/BG-image.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
 .image-data {

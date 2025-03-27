@@ -19,8 +19,7 @@ export class CameraService {
   private videoElement?: HTMLVideoElement;
   private canvasElement?: HTMLCanvasElement;
   private stream?: MediaStream;
-  private imageDataSubject = new BehaviorSubject<string | null>(null);
-  imageData$ = this.imageDataSubject.asObservable();
+  imageData$ = new BehaviorSubject<string | null>(null);
 
   constructor(private router: Router) {}
 
@@ -49,7 +48,7 @@ export class CameraService {
     context.drawImage(this.videoElement, 0, 0);
     
     const imageData = this.canvasElement.toDataURL('image/png');
-    this.imageDataSubject.next(imageData);
+    this.imageData$.next(imageData);
     this.router.navigate(['/confirmation']);
   }
 
@@ -109,7 +108,7 @@ export class CameraService {
     const reader = new FileReader();
     
     reader.onload = (e) => {
-      this.imageDataSubject.next(e.target?.result as string);
+      this.imageData$.next(e.target?.result as string);
     };
     
     reader.onerror = () => {

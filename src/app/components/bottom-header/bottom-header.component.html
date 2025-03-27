@@ -2,26 +2,74 @@
 	<nav class="header__nav">
 		<ul class="nav__list">
 			<li class="nav__item">
-				<a routerLink="" class="nav__link"
-					><img src="../../../assets/images/nav-1.svg" alt="Иконка Главная" />
+				<a
+					routerLink=""
+					class="nav__link"
+					routerLinkActive="active"
+					#rla1="routerLinkActive"
+					[routerLinkActiveOptions]="{ exact: true }"
+					><img
+						[src]="
+							rla1.isActive
+								? '../../../assets/images/nav-act-1.svg'
+								: '../../../assets/images/nav-1.svg'
+						"
+						alt="Иконка Главная"
+					/>
 					<p>Главная</p></a
 				>
 			</li>
 			<li class="nav__item">
-				<a routerLink="catalog" class="nav__link"
-					><img src="./../../assets/images/nav-2.svg" alt="Иконка Каталог" />
+				<a
+					routerLink="catalog"
+					class="nav__link"
+					routerLinkActive="active"
+					#rla2="routerLinkActive"
+					[routerLinkActiveOptions]="{ exact: true }"
+					><img
+						[src]="
+							rla2.isActive
+								? '../../../assets/images/nav-act-2.svg'
+								: '../../../assets/images/nav-2.svg'
+						"
+						alt="Иконка Главная"
+					/>
 					<p>Каталог</p></a
 				>
 			</li>
 			<li class="nav__item">
-				<a routerLink="wardrobe" class="nav__link"
-					><img src="./../../assets/images/nav-3.svg" alt="Иконка Гардероб" />
+				<a
+					routerLink="wardrobe"
+					class="nav__link"
+					routerLinkActive="active"
+					#rla3="routerLinkActive"
+					[routerLinkActiveOptions]="{ exact: true }"
+					><img
+						[src]="
+							rla3.isActive
+								? '../../../assets/images/nav-act-3.svg'
+								: '../../../assets/images/nav-3.svg'
+						"
+						alt="Иконка Главная"
+					/>
 					<p>Гардероб</p></a
 				>
 			</li>
 			<li class="nav__item">
-				<a routerLink="profile" class="nav__link"
-					><img src="./../../assets/images/nav-4.svg" alt="Иконка Кабинет" />
+				<a
+					routerLink="profile"
+					class="nav__link"
+					routerLinkActive="active"
+					#rla4="routerLinkActive"
+					[routerLinkActiveOptions]="{ exact: true }"
+					><img
+						[src]="
+							rla4.isActive
+								? '../../../assets/images/nav-act-4.svg'
+								: '../../../assets/images/nav-4.svg'
+						"
+						alt="Иконка Главная"
+					/>
 					<p>Профиль</p></a
 				>
 			</li>

@@ -2,10 +2,6 @@
 	<a class="back-button" (click)="onBackClick('upload-photo')"
 		><img src="../../../assets/images/back-button.svg" alt="back-button"
 	/></a>
-	<div *ngIf="apiService.error()" class="error-message">
-		{{ apiService.error() }}
-		<button (click)="apiService.error.set(null)"></button>
-	</div>
 	<div *ngIf="apiService.loading()" class="loading-overlay">Processing...</div>
 	<div *ngIf="imageData">
 		<img class="image-data" [src]="imageData" alt="Captured Photo" />
@@ -14,10 +10,15 @@
 		<p *ngIf="apiService.loading()">Uploading image...</p>
 		<p *ngIf="apiService.error()" class="error">
 			Error: {{ apiService.error() }}
+			<button (click)="apiService.error.set(null)">Спрятать</button>
 		</p>
 	</div>
 	<div class="buttons">
-		<button (click)="confirm()" [disabled]="!imageData || apiService.loading()">
+		<button
+			class="button"
+			(click)="confirm()"
+			[disabled]="!imageData || apiService.loading()"
+		>
 			Загрузить
 		</button>
 	</div>
