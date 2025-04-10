@@ -7,8 +7,10 @@ import { TelegramService } from './telegram.service';
   providedIn: 'root'
 })
 export class ApiService {
-  private readonly API_URL = 'http://192.168.0.106:5000'
+  private readonly API_URL = 'http://192.168.31.200:5000'
   type: string | undefined;
+  subtype: string | undefined;
+  subsubtype: string | undefined;
   loading = signal(false);
   error = signal<string | null>(null);
   path: string | undefined;
@@ -23,21 +25,24 @@ export class ApiService {
   ) { }
 
   postImageDataBody(imageData: string){
-    this.path = '/human'
+    this.path = '/human/process'
     this.type = 'not clothes'
     this.postImageData(imageData);
   }
 
-  postImageDataClothes(imageData: string, nameClothes: string){
-    this.path = '/clothes'
+  postImageDataClothes(imageData: string, nameClothes: string, nameSubClothes: string, nameSubSubClothes: string){
+    this.path = '/clothes/process'
     this.type = nameClothes;
+    this.subtype = nameSubClothes;
+    this.subsubtype = nameSubSubClothes;
     this.postImageData(imageData);
   }
 
   postImageData(imageData: string) {
     const initData = this.telegramService.getInitDataUnsafe()
     //const userId = initData.user?.id;
-    const userId = 'ruslan';
+    const userId = 'a';
+    let payLoad: {};
 
     if(!userId){
       this.error.set('User identefication failed')
@@ -46,11 +51,21 @@ export class ApiService {
 
     this.loading.set(true);
     this.error.set(null);
-    
-    const payLoad = {
-      image: imageData,
-      userId: userId,
-      type: this.type
+
+    if(this.path == '/human/process'){
+      payLoad = {
+        image: imageData,
+        user_name: userId,
+      }
+    }
+    else {
+      payLoad = {
+        image: imageData,
+        user_name: userId,
+        category: this.type,
+        subcategory: this.subtype,
+        sub_subcategory: this.subsubtype
+      }
     }
 
     console.log(this.API_URL + this.path)
@@ -58,7 +73,7 @@ export class ApiService {
 
 
     return this.http.post<{
-      image__base64: string;
+      image_base64: string;
       message: string;
     }>(this.API_URL + this.path, payLoad).pipe(
       catchError(err => {
@@ -68,7 +83,7 @@ export class ApiService {
       this.loading.set(false);
       if (response) {
         if (this.type === 'not clothes'){
-          const uploadedPhoto = response.image__base64;
+          const uploadedPhoto = response.image_base64;
           const catalogData = response.message;
 
           console.log(uploadedPhoto);
@@ -78,7 +93,7 @@ export class ApiService {
           this.catalogData = catalogData;
         }
         else{
-          const uploadedPhoto = response.image__base64;
+          const uploadedPhoto = response.image_base64;
           const catalogData = response.message;
 
           console.log(uploadedPhoto);

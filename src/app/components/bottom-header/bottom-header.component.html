@@ -37,13 +37,14 @@
 					<p>Каталог</p></a
 				>
 			</li>
+			<li class="nav__item nav__item__center"></li>
 			<li class="nav__item">
 				<a
 					routerLink="wardrobe"
 					class="nav__link"
 					routerLinkActive="active"
 					#rla3="routerLinkActive"
-					[routerLinkActiveOptions]="{ exact: true }"
+					[routerLinkActiveOptions]="{ exact: false }"
 					><img
 						[src]="
 							rla3.isActive
@@ -76,3 +77,8 @@
 		</ul>
 	</nav>
 </div>
+<button class="container__photo">
+	<button class="button__photo" (click)="navigateToCamera('add-clothes')">
+		<img src="../../../assets/images/nav-add-body.svg" alt="" />
+	</button>
+</button>

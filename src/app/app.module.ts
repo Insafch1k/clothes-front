@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +15,8 @@ import { CategoryComponent } from './components/category/category.component';
 import { GalleryComponent } from './pages/gallery/gallery.component';
 import { ConfirmationComponent } from './pages/confirmation/confirmation.component';
 import { AddClothesComponent } from './pages/add-clothes/add-clothes.component';
+import { MeshWardrobeComponent } from './pages/mesh-wardrobe/mesh-wardrobe.component';
+import { SearchComponent } from './components/search/search.component';
 
 
 @NgModule({
@@ -29,11 +32,14 @@ import { AddClothesComponent } from './pages/add-clothes/add-clothes.component';
     GalleryComponent,
     ConfirmationComponent,
     AddClothesComponent,
+    MeshWardrobeComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

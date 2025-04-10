@@ -1,1 +1,24 @@
-<p>profile works!</p>
+<div class="profile">
+	<header class="profile__header">
+		<a
+			class="profile__header__button"
+			(click)="closeDelete()"
+			*ngIf="isDeleteOpen"
+		>
+			<img src="../../../assets/images/closed-wardrobe-icon.svg" alt="" />
+		</a>
+		<h1 class="profile__header__title">Профиль</h1>
+	</header>
+	<div class="profile__gallery">
+		<div class="profile__gallery__title">Мои фото</div>
+		<ul class="profile__gallery__list">
+			<li class="profile__gallery__item" *ngFor="let profile of profiles">
+				<img
+					class="profile__gallery__image"
+					[src]="'data:image/*;base64,' + profile.image_base64"
+					[alt]="'Photo' + profile.id"
+				/>
+			</li>
+		</ul>
+	</div>
+</div>

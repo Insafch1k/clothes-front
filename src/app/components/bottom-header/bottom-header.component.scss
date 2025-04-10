@@ -34,6 +34,34 @@
                     color: #9747FF
                 }
             }
+
+            .nav__item__center{
+                width: 30px;
+            }
         }
+    }
+}
+
+.container__photo{
+    width: 72px;
+    height: 72px;
+    background-color: #FCFCFC;
+    border: 0;
+    border-radius: 35px;
+    z-index: 6;
+    position: fixed;
+    bottom: 20px;
+    left: calc(50% - 35px);
+
+    .button__photo{
+        width: 60px;
+        height: 60px;
+        background-color: #b200ff;
+        border: 0;
+        border-radius: 30px;
+        box-shadow: -1px 7px 10px 0 rgba(0, 0, 0, 0.25);
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 }

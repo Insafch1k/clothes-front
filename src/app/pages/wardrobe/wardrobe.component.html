@@ -1,39 +1,51 @@
 <div class="container__wardrobe">
 	<header class="header__wardrobe">
+		<a (click)="closeCategory()" *ngIf="!isSubCatalogOpen">
+			<img src="../../../assets/images/closed-wardrobe-icon.svg" alt="" />
+		</a>
 		<h1>Гардероб</h1>
 	</header>
 
-	<button class="wardrobe-search-button">
-		Найти
-		<img
-			[src]="
-				isSearchOpen
-					? '../../../assets/images/search-wardrobe.svg'
-					: '../../../assets/images/search-wardrobe.svg'
-			"
-			[alt]="isSearchOpen ? 'Close search' : 'Open search'"
-			class="icon-svg"
-		/>
-	</button>
+	<app-search></app-search>
 
 	<ul class="wardrobe-list">
-		<li class="wardrobe-item">
-			<button class="wardrobe-item-button">
-				Одежда
-				<img src="../../../assets/images/wardrobe-1.png" alt="" />
+		<li
+			class="wardrobe-item"
+			*ngFor="let category of categories; let i = index"
+		>
+			<button
+				class="wardrobe-item-button"
+				*ngIf="isSubCatalogOpen"
+				(click)="toggleCategory(category)"
+			>
+				{{ category.wardrobeName }}
+				<img src="../../../assets/images/wardrobe-{{ i + 1 }}.png" alt="" />
+				<img
+					*ngIf="i == 3"
+					src="../../../assets/images/wardrobe-{{ i + 1 }}-1.png"
+					alt=""
+				/>
 			</button>
-		</li>
-		<li class="wardrobe-item">
-			<button class="wardrobe-item-button">
-				Обувь
-				<img src="../../../assets/images/wardrobe-2.png" alt="" />
-			</button>
-		</li>
-		<li class="wardrobe-item">
-			<button class="wardrobe-item-button">
-				Головные уборы
-				<img src="../../../assets/images/wardrobe-3.png" alt="" />
-			</button>
+
+			<div *ngIf="!isSubCatalogOpen">
+				<ul class="subwardrobe-list" *ngIf="category.isSubMenuOpen">
+					<li
+						class="subwardrobe-item"
+						*ngFor="let subcategory of category.subCategories"
+					>
+						<button
+							class="wardrobe-item-button"
+							routerLink="/mesh-wardrobe"
+							[queryParams]="{
+								category: category.name,
+								subcategory: subcategory.name
+							}"
+						>
+							{{ subcategory.name }}
+						</button>
+					</li>
+				</ul>
+			</div>
 		</li>
 	</ul>
 

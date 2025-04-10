@@ -7,6 +7,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { GalleryComponent } from './pages/gallery/gallery.component';
 import { ConfirmationComponent } from './pages/confirmation/confirmation.component';
 import { AddClothesComponent } from './pages/add-clothes/add-clothes.component';
+import { MeshWardrobeComponent } from './pages/mesh-wardrobe/mesh-wardrobe.component';
 
 const routes: Routes = [{
   path: '',
@@ -20,6 +21,10 @@ const routes: Routes = [{
   path: 'wardrobe',
   component: WardrobeComponent,
   title: "Гардероб"
+},{
+  path: 'mesh-wardrobe',
+  component: MeshWardrobeComponent,
+  title: "Гардероб-список"
 },{
   path: 'gallery',
   component: GalleryComponent,

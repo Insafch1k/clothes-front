@@ -7,25 +7,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./downloader-buttons.component.scss']
 })
 export class DownloaderButtonsComponent {
-  isHidden = false;
   isHiddenTwo = false;
-  isSwitch = false;
-  isThing = false;
+  isThing = true;
 
   constructor(private router: Router) {}
 
-  toggleContainer() {
-    this.isHidden = !this.isHidden;
-  }
-
   toggleContainerTwo() {
     this.isHiddenTwo = !this.isHiddenTwo;
-  }
-
-  toggleSwitching() {
-    this.isHidden = false;
-    this.isHiddenTwo = false;
-    this.isSwitch = !this.isSwitch;
   }
 
   toggleThing1(){

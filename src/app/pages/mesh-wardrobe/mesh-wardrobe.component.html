@@ -1,0 +1,81 @@
+<div class="container__wardrobe">
+	<header class="header">
+		<div class="header__wardrobe">
+			<a routerLink="/wardrobe">
+				<img src="../../../assets/images/closed-wardrobe-icon.svg" alt="" />
+			</a>
+			<h1>Гардероб</h1>
+		</div>
+		<app-search></app-search>
+		<nav #scrollContainer class="header__nav">
+			<ul class="category-list">
+				<li
+					class="category-item"
+					*ngFor="let category of categories"
+					[id]="category.name + '-scrol'"
+				>
+					<ul class="subcategory-list">
+						<li
+							class="subcategory-item"
+							*ngFor="let subcategory of category.subCategories"
+							(click)="toggleActive(subcategory)"
+							[class.active]="subcategory.isSubSubMenuOpen"
+							routerLink="/mesh-wardrobe"
+							[queryParams]="getSearchParams(category, subcategory)"
+							[id]="category.name + '-' + subcategory.name + '-scrol'"
+						>
+							{{ subcategory.name }}
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+	</header>
+	<ul class="wardrobe-list">
+		<li
+			class="wardrobe-item"
+			*ngFor="let category of categories"
+			[id]="category.name"
+			[class.active]="activateCategory === category.name"
+		>
+			{{ category.name }}
+			<ul class="subwardrobe-list" *ngIf="category.subCategories">
+				<li
+					class="subwardrobe-item"
+					*ngFor="let subcategory of category.subCategories"
+					[id]="category.name + '-' + subcategory.name"
+					[class.active]="activateSubCategory === subcategory.name"
+				>
+					{{ subcategory.name }}
+					<ul class="subsubwardrobe-list" *ngIf="subcategory.subSubCategories">
+						<li
+							class="subsubwardrobe-item"
+							*ngFor="let subsubcategory of subcategory.subSubCategories"
+							[id]="
+								category.name +
+								'-' +
+								subcategory.name +
+								'-' +
+								subsubcategory.name
+							"
+							[class.active]="activateSubSubCategory === subsubcategory.name"
+						>
+							<div class="clothes-name">{{ subsubcategory.name }}</div>
+							<ul class="clothes-list">
+								<li class="clothes-item" *ngFor="let clothe of clothes">
+									<img
+										class="clothes-image"
+										[src]="'data:image/*;base64,' + clothe.image_base64"
+										[alt]="'Photo' + clothe.id"
+									/>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+	</ul>
+
+	<div class="bottom-header"></div>
+</div>

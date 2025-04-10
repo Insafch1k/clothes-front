@@ -1,4 +1,42 @@
+<button
+	class="add-body"
+	(click)="toggleCategoryBody()"
+	[class.active]="openCategoryBody"
+>
+	<img
+		[src]="
+			openCategoryBody
+				? '../../../assets/images/closed-category-body.svg'
+				: '../../../assets/images/open-category-body.svg'
+		"
+	/>
+</button>
 <div class="main__container">
+	<div class="main__container__blur" *ngIf="openCategoryBody">
+		<ul class="category-body-list">
+			<div class="scroll-container">
+				<li
+					class="category-body-item add-body-item"
+					(click)="navigateToCamera('upload-photo')"
+				>
+					<img src="../../../assets/images/nav-add-body.svg" alt="" />
+				</li>
+				<li *ngIf="allPhotos.length > 0" class="category-body__item">
+					<div
+						class="category-body-item"
+						*ngFor="let photo of allPhotos"
+						(click)="onMainPage('data:image/*;base64,' + photo.image_base64)"
+					>
+						<img
+							class="category-body__image"
+							[src]="'data:image/*;base64,' + photo.image_base64"
+							[alt]="'Photo ' + photo.id"
+						/>
+					</div>
+				</li>
+			</div>
+		</ul>
+	</div>
 	<img
 		*ngIf="imageData"
 		class="image-data"

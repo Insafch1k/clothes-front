@@ -1,4 +1,4 @@
-<div
+<!-- <div
 	class="buttons__container"
 	[class.hide-down]="isHidden"
 	[class.hide-change]="isSwitch"
@@ -28,18 +28,9 @@
 			Добавить одежду
 		</button>
 	</div>
-</div>
-<div
-	class="buttons__container button__container__2"
-	[class.hide-down]="isHiddenTwo"
-	[class.hide-change]="!isSwitch"
->
+</div> -->
+<div class="buttons__container" [class.hide-down]="isHiddenTwo">
 	<div class="icons">
-		<img
-			(click)="toggleSwitching()"
-			src="../../../assets/images/loading-icon.svg"
-			alt="иконка переворачивания"
-		/>
 		<div class="things">
 			<button
 				(click)="toggleThing1()"

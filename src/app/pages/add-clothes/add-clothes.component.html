@@ -61,9 +61,9 @@
 						(click)="toggleSubSubMenu(subCategory)"
 					>
 						<span
+							[class.subcategory-name--open]="subCategory.isSubSubMenuOpen"
 							class="subcategory-name"
 							(click)="toogleSubSubName(subCategory)"
-							[class.subcategory-name--open]="subCategory.isSubSubMenuOpen"
 							>{{ subCategory.name }}
 							<img
 								*ngIf="!subCategory.isSubSubMenuOpen"
